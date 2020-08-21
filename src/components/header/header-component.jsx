@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderContainer, LogoContainer, OptionsContainer, OptionDiv, OptionLink } from './header-styles';
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header-styles';
 import { auth } from '../../firebase/firebase.utils';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ const Header = ({ currentUser, hidden }) => (
       <OptionLink to='/contact' >CONTACT</OptionLink>
       {
         currentUser ? 
-        <OptionDiv  onClick={ () => auth.signOut() }> SIGN OUT</OptionDiv> : 
+        <OptionLink as='div'  onClick={ () => auth.signOut() }> SIGN OUT</OptionLink> : 
         <OptionLink  to='/signin'>SIGN IN</OptionLink>
       }
       <CartIcon />
