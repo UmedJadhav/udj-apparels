@@ -13,6 +13,8 @@ const firebaseConfig = {
   measurementId: "G-04KE52W8WQ"
 };
 
+firebase.initializeApp(firebaseConfig);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if(!userAuth) return ;
   const userRef = firestore.doc(`users/${userAuth.uid}`);
@@ -67,9 +69,14 @@ export const converCollectionSnapshotToMap=(collections) =>{
     }, {}); // This returns the ShopData from Firestore
 }
 
-firebase.initializeApp(firebaseConfig);
 
-
+export const getCurrentUser = () =>( new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    },reject);
+  })
+)
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
