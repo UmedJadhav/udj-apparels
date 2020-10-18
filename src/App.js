@@ -2,16 +2,16 @@ import React from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect'
+import { connect } from 'react-redux';
+
+import { selectCurrentUser } from './redux/user/user-selectors';
+import { checkUserSession } from './redux/user/user-actions';
 
 import HomePage from './pages/homepage/homepage-component';
 import ShopPage from './pages/shop/shop-component';
 import Header from './components/header/header-component';
 import LoginLogoutPage from './pages/login-logout/login-logout-component';
 import CheckoutPage from './pages/checkout/checkout-component';
-
-import { connect } from 'react-redux';
-import { selectCurrentUser } from './redux/user/user-selectors';
-import { checkUserSession } from './redux/user/user-actions';
 
 class App extends React.Component {
 
@@ -39,8 +39,6 @@ class App extends React.Component {
       </div>
     ); 
   }
-
-  
 }
 
 const mapStateToProps = createStructuredSelector({

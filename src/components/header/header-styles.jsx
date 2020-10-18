@@ -13,6 +13,9 @@ export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
   padding: 25px; 
+  &:hover{
+    border: none;
+  }
 `;
 
 export const OptionsContainer = styled.div`
@@ -26,5 +29,8 @@ export const OptionsContainer = styled.div`
 export const OptionLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
+  &:hover{
+    border-bottom: 1px solid rgb(41, 37, 37);
+  }
 `;
 

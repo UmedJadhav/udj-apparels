@@ -1,20 +1,18 @@
 import React from 'react';
-import './sign-in-styles.scss';
 import { connect } from 'react-redux';
 
+import { SignInContainer, SignInTitle, ButtonsBarContainer } from './sign-in-styles';
+
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user-actions'
+
 import FormInput from '../form-input/form-input-component';
 import CustomButton from '../custom-button/custom-button-component';
 
 class SignIn extends React.Component {
-  constructor(props) {
-    super (props);
-    
-    this.state = {
+  state = {
       email: '',
       password: ''
     }
-  }
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,15 +20,6 @@ class SignIn extends React.Component {
     const { email, password}  = this.state;
 
     emailSignInStart(email, password );
-    // try{
-    //   await auth.signInWithEmailAndPassword(email, password)
-    //   this.setState({ email: '', password: ''});
-    // }catch(error){
-    //   console.error(error);
-    // }
-    //  this.setState(
-    //   { email: '', password: '' }
-    // );
   }
 
   handleChange = (event) => {
@@ -43,20 +32,20 @@ class SignIn extends React.Component {
     const { googleSignInStart } = this.props ;
 
     return(
-      <div className='sign-in'>
-        <h2>I already have an account</h2>
+      <SignInContainer className='sign-in'>
+        <SignInTitle>I already have an account</SignInTitle>
         <span>Sign in with your email and password</span>
         <form onSubmit={ this.handleSubmit } >
           <FormInput name='email' type='email' value={this.state.email} handleChange={ this.handleChange } required label='Email'/>
           <FormInput name='password' type='password' value={this.state.password} handleChange={ this.handleChange } required label='Password'/>
-          <div className='buttons'>
+          <ButtonsBarContainer className='buttons'>
             <CustomButton type='submit' > Sign in </CustomButton>
             <CustomButton type='button' onClick={ googleSignInStart } isGoogleSignIn> 
               Sign in with Google 
             </CustomButton>
-          </div>
+          </ButtonsBarContainer>
         </form>
-      </div>
+      </SignInContainer>
     )
   }
 }
